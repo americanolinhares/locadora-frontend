@@ -1,0 +1,25 @@
+<div class = "container">
+    <table class = "table table-striped table-bordered">
+        <tr style = "background: lightblue;">
+                <th>ID</th>
+                <th>ANO</th>
+                <th>PLACA</th>
+                <th>CHASSI</th>
+                <th>MODELO</th>
+                <th>MARCA</th>
+                <th>RENAVAM</th>
+        </tr>
+        <tr *ngFor = "let veiculo of veiculos">
+                <td>{{veiculo.id}}</td>
+                <td>{{veiculo.ano}}</td>
+                <td>{{veiculo.placa}}</td>
+                <td>{{veiculo.chassi}}</td>
+                <td>{{veiculo.modelo}}</td>
+                <td>{{veiculo.marca}}</td>
+                <td>{{veiculo.renavam}}</td>
+        </tr>
+        <tr *ngIf = "veiculos && veiculos.length == 0">
+            <td colspan = "7">Nenhum veiculo encontrado!</td>
+        </tr>
+    </table>
+</div>

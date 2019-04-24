@@ -1,0 +1,101 @@
+<div class="container">
+    <div (veiculoObj) = 'random($event)'>
+        <form class="form-horizontal">
+            <input type = "hidden" [(ngModel)] = "veiculo.id" name = "id" />
+            <div class="form-group">
+                <label class="control-label col-sm-2">Ano</label>
+                <div class="col-sm-2">
+                    <input type="number" [(ngModel)]="veiculo.ano" id="ano" name="ano" maxlength="4" required #ano="ngModel" class="form-control"/>
+                    <div *ngIf="ano.invalid && (ano.dirty || ano.touched)" class="alert alert-danger">
+                        <div *ngIf="ano.errors.required">Ano é obrigatório.</div>
+                        <div *ngIf="ano.errors.size">Ano deve conter 4 dígitos.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Placa</label>
+                <div class="col-sm-2">
+                    <input type = "text" [(ngModel)] = "veiculo.placa" id="placa" name="placa"  required maxlength="8" #placa="ngModel" class="form-control"/>
+                    <div *ngIf="placa.invalid && (placa.dirty || placa.touched)" class="alert alert-danger">
+                        <div *ngIf="placa.errors.required">Placa é obrigatória.</div>
+                        <div *ngIf="placa.errors.size">Placa deve conter 8 caracteres.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Chassi</label>
+                <div class="col-sm-4">
+                    <input type = "text" [(ngModel)] = "veiculo.chassi" id="chassi "name="chassi" required maxlength="17" #chassi="ngModel" class="form-control"/>
+                    <div *ngIf="chassi.invalid && (chassi.dirty || chassi.touched)" class="alert alert-danger">
+                        <div *ngIf="chassi.errors.required">Chassi é obrigatório.</div>
+                        <div *ngIf="chassi.errors.size">Chassi deve conter 17 caracteres.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Modelo</label>
+                <div class="col-sm-4">
+                    <input type = "text" [(ngModel)] = "veiculo.modelo" id="modelo "name = "modelo" required #modelo="ngModel" class="form-control"/>
+                    <div *ngIf="modelo.invalid && (modelo.dirty || modelo.touched)"class="alert alert-danger">
+                        <div *ngIf="modelo.errors.required">Modelo é obrigatório.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Marca</label>
+                <div class="col-sm-3">
+                    <input type = "text" [(ngModel)] = "veiculo.marca" id="marca" name="marca" required #marca="ngModel" class="form-control"/>
+                    <div *ngIf="marca.invalid && (marca.dirty || marca.touched)"class="alert alert-danger">
+                        <div *ngIf="marca.errors.required">Marca é obrigatória.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Renavam</label>
+                <div class="col-sm-4">
+                    <input type = "number" [(ngModel)] = "veiculo.renavam" id="renavam" name="renavam" required maxlength="11" #renavam="ngModel" class="form-control" />
+                    <div *ngIf="renavam.invalid && (renavam.dirty || renavam.touched)" class="alert alert-danger">
+                        <div *ngIf="renavam.errors.required">Renavam é obrigatório.</div>
+                        <div *ngIf="renavam.errors.size">Renavam deve conter 11 dígitos.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button (click) = "addVeiculo()" class = "btn btn-primary">Adicionar Veiculo</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <table class = "table table-striped table-bordered">
+            <tr style = "background: lightblue;">
+                <th>ID</th>
+                <th>ANO</th>
+                <th>PLACA</th>
+                <th>CHASSI</th>
+                <th>MODELO</th>
+                <th>MARCA</th>
+                <th>RENAVAM</th>
+                <th>ACOES</th>
+            </tr>
+            <tr *ngFor = "let veiculo of veiculos">
+                <td>{{veiculo.id}}</td>
+                <td>{{veiculo.ano}}</td>
+                <td>{{veiculo.placa}}</td>
+                <td>{{veiculo.chassi}}</td>
+                <td>{{veiculo.modelo}}</td>
+                <td>{{veiculo.marca}}</td>
+                <td>{{veiculo.renavam}}</td>
+                <td>
+                    <button (click) = "getVeiculo(veiculo.id)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                    &nbsp;|&nbsp;
+                    <button (click) = "deleteVeiculo(veiculo.id)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+            </tr>
+            <tr *ngIf = "veiculos && veiculos.length == 0">
+                <td colspan = "8">Nenhum veiculo encontrado!</td>
+            </tr>
+        </table>
+    </div>
+</div>
