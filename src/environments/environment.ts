@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:9191'
+  apiUrl: 'http://ancient-dawn-70138.herokuapp.com'
 };
